@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+gunicorn
+pydantic
+numpy
+torch  
+transformers  
+boto3  
+
+#EC2 GPU instance 
+torchvision
+torchaudio
+nvidia-pyindex
