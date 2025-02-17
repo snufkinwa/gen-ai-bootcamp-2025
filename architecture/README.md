@@ -28,14 +28,13 @@ By **combining** **Mistral 7B (self-hosted, cost-effective)** with **AWS Bedrock
 
 ### **📌 Logical Setup – AWS Configuration**
 
-Since we have **$119 in AWS credits**, we’ll strategically use AWS services for **initial deployment and testing** while ensuring **future scalability**.
+With **$119 in AWS credits**, we’ll focus on a **lightweight and cost-effective setup** for **initial deployment and testing**, while keeping the option open for future expansion.
 
 **Planned AWS Setup:**
 
-- **Compute:** EC2 instances with **GPU support** for model inference.
-- **Storage:** Amazon S3 for **datasets, model checkpoints, and logs**.
-- **Networking:** VPC with **security groups** for controlled access.
-- **Scaling:** Auto Scaling to **handle increased user demand**.
-- **Monitoring:** CloudWatch to **track system performance, API usage, and costs**.
+- **Compute:** A single **EC2 instance (GPU-supported)** to run **Mistral 7B** efficiently.
+- **Storage:** **Amazon S3** for storing **datasets, model files, and logs**.
+- **Authentication:** **AWS Cognito** to handle **user sign-ins securely**.
+- **API Routing:** **API Gateway** to manage requests between the frontend and backend.
 
-This setup **maximizes our AWS credits** while keeping our **infrastructure flexible and adaptable** for future expansion.
+This setup **keeps costs low, avoids unnecessary scaling overhead, and maximizes AWS credits** while ensuring **a smooth user experience** for 300 students.
