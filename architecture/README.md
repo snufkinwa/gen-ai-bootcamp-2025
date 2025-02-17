@@ -1,31 +1,41 @@
 # Architecting [ことばネクサス]
 
-## Business Goal
+### **📌 Business Goal**
 
-We’re creating architectural diagrams to make GenAI easier to understand for stakeholders. The goal is to simplify decision-making by showing different technical options and helping navigate uncertainties in adopting GenAI. This way, stakeholders can make informed choices without feeling locked into a single solution.
+We’re designing architectural diagrams to make **GenAI adoption easier to understand** for stakeholders. The goal is to simplify decision-making by showcasing different **technical options** and guiding discussions on **risks, costs, and infrastructure choices**. This ensures stakeholders can make informed decisions **without vendor lock-in**.
 
-We have a **$10-15K budget** and are supporting **300 students in Nagasaki**. Our plan is to build our own infrastructure to keep data private, avoid high managed service costs, and ensure long-term affordability.
+We have a **$10-15K budget** and are supporting **300 students in Nagasaki**. To maintain **data privacy, long-term affordability, and avoid high managed service costs**, we plan to **build and manage our own infrastructure** instead of relying on fully managed AI services.
 
-## Technical Considerations
+### **📌 Technical Considerations**
 
-We’ll use three levels of diagramming:
+To communicate our **GenAI architecture effectively**, we will create three levels of diagrams:
 
-- **Conceptual** – A big-picture view for business stakeholders.
-- **Logical** – A breakdown of key technical components without too much detail.
-- **Physical** – A deep dive into the specifics needed for implementation.
+- **Conceptual** → High-level overview for business stakeholders.
+- **Logical** → Breakdown of technical components without deep implementation details.
+- **Physical** → Low-level details needed for actual implementation.
 
-## Model Selection and Development
+### **📌 Model Selection and Development**
 
-Using [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B), an open-source model with traceable training data to avoid copyright issues.
+We’re using **[Mistral 7B](https://huggingface.co/mistralai/Mistral-7B)**, an **open-source model** with **traceable training data** to avoid copyright risks. Hosting **Mistral 7B on our own infrastructure** ensures we **retain full control over data, reduce long-term costs, and fine-tune the model as needed**.
 
-## Logical Setup - AWS Configuration
+Additionally, we have **$100 in AWS credits** from a **hackathon**, which allows us to experiment with **Claude (Anthropic), Cohere, or Meta models** on **Amazon Bedrock**. Since Bedrock charges on a **token basis** (e.g., ~$0.008 per 1,000 input tokens), we will optimize usage by:
 
-Since we have **$119 in AWS credits**, we will utilize AWS services for initial deployment and testing. The setup includes:
+- **Keeping responses concise** to minimize token consumption.
+- **Monitoring AWS billing** to avoid unexpected costs.
+- **Batch processing requests** to maximize efficiency.
 
-- **Compute**: EC2 instances with GPU support for model inference.
-- **Storage**: S3 for dataset storage and model checkpoints.
-- **Networking**: VPC setup with security groups to manage access.
-- **Scaling**: AWS Auto Scaling for handling increased usage.
-- **Monitoring**: CloudWatch to track system performance and costs.
+By **combining** **Mistral 7B (self-hosted, cost-effective)** with **AWS Bedrock (scalable cloud AI)**, we create a **balanced AI deployment** that is both flexible and affordable.
 
-This logical setup ensures we maximize our credits while maintaining flexibility for future scalability.
+### **📌 Logical Setup – AWS Configuration**
+
+Since we have **$119 in AWS credits**, we’ll strategically use AWS services for **initial deployment and testing** while ensuring **future scalability**.
+
+**Planned AWS Setup:**
+
+- **Compute:** EC2 instances with **GPU support** for model inference.
+- **Storage:** Amazon S3 for **datasets, model checkpoints, and logs**.
+- **Networking:** VPC with **security groups** for controlled access.
+- **Scaling:** Auto Scaling to **handle increased user demand**.
+- **Monitoring:** CloudWatch to **track system performance, API usage, and costs**.
+
+This setup **maximizes our AWS credits** while keeping our **infrastructure flexible and adaptable** for future expansion.
