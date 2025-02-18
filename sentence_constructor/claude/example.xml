@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<examples>
+    <example>
+        <user_input>
+            The pigeon is eating bread in the classroom.
+        </user_input>
+        <score>5</score>
+        <score_reasons>
+            - GOOD: Simple vocabulary suitable for beginners
+            - GOOD: Basic present tense structure
+            - GOOD: Common location particle practice
+            - GOOD: Clear structure guidance
+            - GOOD: Essential daily life vocabulary
+        </score_reasons>
+        <assistant_output>
+            Here's your vocabulary table to start with:
+            | Japanese | Romaji | English |
+            |----------|---------|----------|
+            | 鳩 | hato | pigeon |
+            | パン | pan | bread |
+            | 教室 | kyoushitsu | classroom |
+            | 食べる | taberu | to eat |
+
+            **Sentence structure:**  
+            [Subject] [Location] [Object] [Action-present]
+
+            **Considerations:**  
+            - Think about the particle needed for marking the subject
+            - Consider which particle shows location
+            - Remember the particle used for the object being eaten
+            - Present tense form is the basic form you've learned
+            
+            **Next steps:**
+            - Start by marking the subject (pigeon)
+            - Add the location (classroom)
+            - Include the object (bread)
+            - End with the action (eating)
+        </assistant_output>
+    </example>
+</examples>

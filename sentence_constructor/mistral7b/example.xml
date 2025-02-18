@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<examples>
+    <example>
+        <english>The sun rises.</english>
+        <japanese>日に上がる</japanese>
+        <romaji>hi ni agaru</romaji>
+        <structure>
+            <pattern>Subject + に + Verb + ある/いる + です/ます</pattern>
+            <components>
+                <component>The sun (Subject)</component>
+                <component>に (Particle indicating location)</component>
+                <component>上がる (To rise)</component>
+                <component>日 (Sun)</component>
+                <component>に (Particle indicating location)</component>
+                <component>ある (To exist)</component>
+                <component>です (Copula, indicating present tense)</component>
+            </components>
+        </structure>
+        <score>8</score>
+        <reason>The student identified the subject and used the correct copula, but missed the particle に indicating location.</reason>
+    </example>
+</examples>

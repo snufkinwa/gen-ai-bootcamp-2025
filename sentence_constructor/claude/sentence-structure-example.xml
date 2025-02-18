@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SentenceStructures>
+
+    <Example>
+        <English>The cat is small.</English>
+        <Structure>[Subject] [Adjective].</Structure>
+    </Example>
+
+    <Example>
+        <English>The book is on the table.</English>
+        <Structure>[Location] [Subject] [Verb].</Structure>
+    </Example>
+
+    <Example>
+        <English>Put the bag on the chair.</English>
+        <Structure>[Location] [Object] [Verb].</Structure>
+    </Example>
+
+    <Example>
+        <English>Did you drink the water?</English>
+        <Structure>[Subject] [Object] [Verb]?</Structure>
+    </Example>
+
+    <Example>
+        <English>This morning, I ate rice.</English>
+        <Structure>[Time] [Subject] [Object] [Verb].</Structure>
+    </Example>
+
+    <Example>
+        <English>Are you going to school?</English>
+        <Structure>[Subject] [Verb]?</Structure>
+    </Example>
+
+    <Example>
+        <English>Did you see the dog?</English>
+        <Structure>[Object] [Verb]?</Structure>
+    </Example>
+
+    <Example>
+        <English>The boy is looking at the tree.</English>
+        <Structure>[Subject] [Verb] [Location].</Structure>
+    </Example>
+
+    <Example>
+        <English>The apple is on the table, and it is red.</English>
+        <Structure>[Location] [Subject] [Verb], [Subject] [Adjective].</Structure>
+    </Example>
+
+    <Example>
+        <English>I went to the park because the weather was good.</English>
+        <Structure>[Subject] [Verb] [Location] [Reason] [Subject] [Adjective].</Structure>
+    </Example>
+
+</SentenceStructures>

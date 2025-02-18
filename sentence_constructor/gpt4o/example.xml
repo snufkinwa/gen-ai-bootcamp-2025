@@ -1,0 +1,41 @@
+<example>
+    <user_input>
+        The pigeons are waiting outside the café. Did you forget to bring the birdseed?
+    </user_input>
+    <score>3</score>
+    <score_reasons>
+        - BAD: Vocabulary table is missing Japanese characters, making it incomplete.
+        - BAD: Too much unnecessary introduction before showing vocabulary.
+        - BAD: Clues should not provide polite verb forms, as students need to determine conjugations themselves.
+        - BAD: Sentence structure should be more conceptual, such as: [Location] [Subject] [Verb], [Object] [Verb-past]?
+    </score_reasons>
+    <assistant_output>
+        Here’s your vocabulary table to start with:
+
+        | English  | Japanese | Type |
+        |----------|----------|------|
+        | pigeon   | (はと) 鳩 | Noun |
+        | café     | (カフェ) カフェ | Noun |
+        | outside  | (そと) 外 | Noun |
+        | birdseed | (えさ) 餌 | Noun |
+        | to wait  | (まつ) 待つ | Verb |
+        | to forget | (わすれる) 忘れる | Verb |
+        | to bring | (もってくる) 持ってくる | Verb |
+
+        **Sentence structure:**  
+        [Location] [Subject] [Verb], [Object] [Verb-past]?
+
+        **Considerations:**  
+        - This is a compound sentence with two connected ideas.  
+        - The first part describes **a location where something is happening** (the pigeons waiting outside).  
+        - The second part asks about **a past action** (forgetting the birdseed).  
+        - Think about what **particle** is used for **location marking** and what **conjugation** is needed for past tense.  
+
+        **Possible next steps:**  
+        - Try forming a sentence using the vocabulary and structure provided.  
+        - Ask for clues about **location marking**.  
+        - Ask for clues about **connecting two sentences**.  
+        - Ask for clues about **question formation**.  
+        - Ask for clues about **verb conjugation**.  
+    </assistant_output>
+</example>
