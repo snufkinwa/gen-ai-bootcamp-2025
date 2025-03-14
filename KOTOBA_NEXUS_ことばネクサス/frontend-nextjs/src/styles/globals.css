@@ -2,20 +2,174 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "Lazy Dog";
+  src: url("/lazy_dog.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 208 84% 83%;
+    --foreground: 340 40% 65%;
+
+    --card: 331 65% 95%;
+    --card-foreground: 344 35% 55%;
+
+    --popover: 331 65% 95%;
+    --popover-foreground: 344 35% 55%;
+
+    --primary: 344 35% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 343 44% 65%;
+    --secondary-foreground: 340 16% 30%;
+
+    --muted: 341 20% 85%;
+    --muted-foreground: 344 35% 55%;
+
+    --accent: 340 39% 73%;
+    --accent-foreground: 340 16% 30%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 340 24% 82%;
+    --input: 340 24% 82%;
+    --ring: 344 35% 55%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 219 18% 51%;
+    --foreground: 0 0% 95%;
+
+    --card: 219 18% 60%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 219 18% 60%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 344 35% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 343 44% 65%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 220 10% 65%;
+    --muted-foreground: 0 0% 95%;
+
+    --accent: 340 39% 73%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 60%;
+    --input: 220 15% 60%;
+    --ring: 344 35% 55%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.font-lazy-dog {
+  font-family: "Lazy Dog", cursive;
+  letter-spacing: 0.02em;
+}
+
+/* Apply the font to specific heading levels */
+h1.section-title,
+h2.section-title {
+  font-family: "Lazy Dog", cursive;
+  letter-spacing: 0.02em;
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) translateX(20px);
+    opacity: 0.7;
+  }
+}
+
+.cherry-blossom {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: hsl(var(--primary));
+  border-radius: 15px 0px 15px 0px;
+  animation: falling linear infinite;
+}
+
+.cherry-blossom:nth-child(1) {
+  left: 10%;
+  animation-duration: 9s;
+  animation-delay: 1s;
+}
+
+.cherry-blossom:nth-child(2) {
+  left: 20%;
+  animation-duration: 7s;
+  animation-delay: 2s;
+}
+
+.cherry-blossom:nth-child(3) {
+  left: 35%;
+  animation-duration: 8s;
+  animation-delay: 3s;
+}
+
+.cherry-blossom:nth-child(4) {
+  left: 50%;
+  animation-duration: 10s;
+  animation-delay: 0s;
+}
+
+.cherry-blossom:nth-child(5) {
+  left: 65%;
+  animation-duration: 6s;
+  animation-delay: 2.5s;
+}
+
+.cherry-blossom:nth-child(6) {
+  left: 80%;
+  animation-duration: 9s;
+  animation-delay: 1.5s;
+}
+
+.cherry-blossom:nth-child(7) {
+  left: 90%;
+  animation-duration: 7.5s;
+  animation-delay: 3.5s;
+}
+
+.cherry-blossom-petal {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: hsl(var(--secondary));
+  border-radius: 15px 0px;
+  transform: rotate(45deg);
+  animation: falling linear infinite;
+}
+
+.cherry-blossom-petal-dark {
+  background-color: hsl(var(--primary));
 }
