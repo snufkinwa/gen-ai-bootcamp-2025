@@ -1,46 +1,46 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Calendar, Clock } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+import { motion } from "framer-motion";
+import { Calendar, Clock } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 type User = {
-  id: string
-  name: string
-  email: string
-}
+  id: string;
+  name: string;
+  email: string;
+};
 
 interface DashboardHeaderProps {
-  user: User | null
+  user: User | null;
 }
 
 export default function DashboardHeader({ user }: DashboardHeaderProps) {
   // Get current date and time in Japan
-  const now = new Date()
-  const japanTime = new Date(now.getTime() + 9 * 60 * 60 * 1000) // UTC+9 for Japan
+  const now = new Date();
+  const japanTime = new Date(now.getTime() + 9 * 60 * 60 * 1000); // UTC+9 for Japan
   const formattedDate = japanTime.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-  })
+  });
   const formattedTime = japanTime.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
-  })
+  });
 
   // Determine greeting based on time of day in Japan
-  const hour = japanTime.getHours()
-  let greeting = "こんにちは" // Hello (general)
-  let greetingTranslation = "Hello"
+  const hour = japanTime.getHours();
+  let greeting = "こんにちは"; // Hello (general)
+  let greetingTranslation = "Hello";
 
   if (hour < 12) {
-    greeting = "おはようございます"
-    greetingTranslation = "Good morning"
+    greeting = "おはようございます";
+    greetingTranslation = "Good morning";
   } else if (hour >= 17) {
-    greeting = "こんばんは"
-    greetingTranslation = "Good evening"
+    greeting = "こんばんは";
+    greetingTranslation = "Good evening";
   }
 
   return (
@@ -54,12 +54,14 @@ export default function DashboardHeader({ user }: DashboardHeaderProps) {
               transition={{ duration: 0.5 }}
               className="mb-2"
             >
-              <h1 className="text-3xl font-bold">
+              <h1 className="text-3xl font-yokomoji">
                 {greeting}, {user?.name?.split(" ")[0] || "Student"}!
               </h1>
               <p className="text-muted-foreground">{greetingTranslation}</p>
             </motion.div>
-            <p className="text-muted-foreground">Welcome to your Japanese learning dashboard</p>
+            <p className="text-muted-foreground">
+              Welcome to your Japanese learning dashboard
+            </p>
           </div>
 
           <div className="mt-4 md:mt-0 flex flex-col space-y-2">
@@ -75,6 +77,5 @@ export default function DashboardHeader({ user }: DashboardHeaderProps) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-

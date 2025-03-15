@@ -5,6 +5,7 @@ import Loading from "./loading";
 import { Nunito } from "next/font/google";
 import CharacterSection from "@/components/character-section";
 import BlogSection from "@/components/blog-section";
+import CallToActionSection from "@/components/cta-section";
 import Head from "next/head";
 
 const nunito = Nunito({
@@ -16,7 +17,7 @@ const nunito = Nunito({
 export default function Home() {
   return (
     <div
-      className={`${nunito.variable} flex flex-col items-center min-h-screen`}
+      className={`${nunito.variable} flex flex-col items-center overflow-x-hidden min-h-screen`}
     >
       <Head>
         <title>ことば ❀·˚ ༘ ネクサス</title>
@@ -31,6 +32,7 @@ export default function Home() {
           <CharacterSection />
           <FeaturesSection />
           <BlogSection />
+          <CallToActionSection />
         </Suspense>
       </main>
     </div>

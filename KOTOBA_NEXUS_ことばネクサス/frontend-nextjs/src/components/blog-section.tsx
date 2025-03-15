@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import CombinedSectionBreak from "@/components/section-break";
 
 const blogPosts = [
   {
@@ -23,7 +24,7 @@ const blogPosts = [
     date: "March 10, 2025",
     author: "Tanaka Yuki",
     category: "Grammar Tips",
-    imageUrl: "/placeholder.svg?height=200&width=400",
+    imageUrl: "/blog1.png?height=200&width=400",
   },
   {
     id: 2,
@@ -33,7 +34,7 @@ const blogPosts = [
     date: "March 5, 2025",
     author: "Suzuki Akira",
     category: "JLPT",
-    imageUrl: "/placeholder.svg?height=200&width=400",
+    imageUrl: "/blog2.png?height=200&width=400",
   },
   {
     id: 3,
@@ -43,26 +44,19 @@ const blogPosts = [
     date: "February 28, 2025",
     author: "Watanabe Mei",
     category: "Culture",
-    imageUrl: "/placeholder.svg?height=200&width=400",
+    imageUrl: "/blog3.png?height=200&width=400",
   },
 ];
 
 export default function BlogSection() {
   return (
     <div className="relative w-full flex flex-col items-center pb-50">
-      {/* Torii Gate Section */}
-      <div className="relative w-full">
-        <Image
-          src="/jpblog.svg"
-          alt="Japanese Torii Gate"
-          width={1920}
-          height={600}
-          className="w-full object-cover"
-        />
+      <div className="relative w-full h-full">
+        <CombinedSectionBreak />
       </div>
 
       {/* Blog Section - Overlapping the Torii Gate */}
-      <div className="absolute top-[70%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl z-10  p-10 ">
+      <div className="absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl z-10  p-10 ">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-lazy-dog section-title">
             Latest from our Blog

@@ -10,6 +10,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Yokomoji";
+  src: url("/yokomoji.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     --background: 208 84% 83%;
@@ -85,6 +92,11 @@
 
 .font-lazy-dog {
   font-family: "Lazy Dog", cursive;
+  letter-spacing: 0.02em;
+}
+
+.font-yokomoji {
+  font-family: "Yokomoji", sans-serif;
   letter-spacing: 0.02em;
 }
 
@@ -172,4 +184,15 @@ h2.section-title {
 
 .cherry-blossom-petal-dark {
   background-color: hsl(var(--primary));
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.kimono-pattern-bg {
+  background-image: url("/kimono-pattern.jpg");
+  background-size: 600px;
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
 }

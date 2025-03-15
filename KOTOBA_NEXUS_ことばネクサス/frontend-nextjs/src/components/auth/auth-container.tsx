@@ -121,7 +121,7 @@ export default function AuthContainer() {
               transition={{ duration: 0.2 }}
             >
               <div className="max-w-xs">
-                <h1 className="text-3xl md:text-2xl font-bold mb-4">
+                <h1 className="text-3xl md:text-2xl font-yokomoji mb-4">
                   こんにちは、ようこそ!
                 </h1>
 
@@ -148,7 +148,7 @@ export default function AuthContainer() {
               transition={{ duration: 0.2 }}
             >
               <div className="max-w-xs">
-                <h1 className="text-3xl md:text-2xl font-bold mb-4">
+                <h1 className="text-3xl md:text-2xl font-yokomoji mb-4">
                   いっしょに、しようよ！
                 </h1>
                 <p className="mb-8">Already have an account?</p>

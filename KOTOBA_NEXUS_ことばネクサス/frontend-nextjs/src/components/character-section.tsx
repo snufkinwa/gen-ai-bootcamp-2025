@@ -60,9 +60,9 @@ export default function CharacterSection() {
   };
 
   return (
-    <section className="py-12 md:py-24 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+    <section className="py-24 md:py-32 relative overflow-visible">
+      {/* Background decoration with vertical extension only */}
+      <div className="absolute inset-0 -top-16  -bottom-16 right-0 left-0 z-0 opacity-20 pointer-events-none">
         <Image
           src="/herosakura.png"
           alt="Cherry blossom background"
@@ -80,11 +80,6 @@ export default function CharacterSection() {
           {/* Character Info - LEFT SIDE */}
           <div className="md:col-span-3 order-2 md:order-1">
             <Card className="relative bg-card/80 backdrop-blur-sm border border-primary/20 overflow-hidden h-full">
-              {/* Top badge */}
-              <div className="absolute top-0 right-0 bg-primary/90 text-white text-xs font-bold py-1 px-3 rounded-bl-md">
-                NEW
-              </div>
-
               {/* Character Info Content */}
               <CardContent className="p-6">
                 <motion.div
@@ -142,13 +137,6 @@ export default function CharacterSection() {
                   <p className="text-muted-foreground mb-6">
                     {activeCharacter.description}
                   </p>
-
-                  {/* Action button */}
-                  <div className="mt-auto">
-                    <Button className="w-full" size="sm">
-                      View More &gt;&gt;
-                    </Button>
-                  </div>
                 </motion.div>
               </CardContent>
 
@@ -194,10 +182,10 @@ export default function CharacterSection() {
 
             {/* Floating Japanese characters */}
             <motion.div
-              className="absolute top-10 left-10 text-4xl text-primary/30 font-bold"
+              className="absolute top-10 left-10 text-4xl text-primary/30 font-yokomoji"
               animate={{
                 y: [0, -15, 0],
-                opacity: [0.3, 0.7, 0.3],
+                opacity: [0.5, 0.9, 0.5],
               }}
               transition={{
                 duration: 3,
@@ -208,10 +196,10 @@ export default function CharacterSection() {
               あ
             </motion.div>
             <motion.div
-              className="absolute bottom-10 right-20 text-5xl text-[hsl(var(--cherry-pink))]/40 font-bold"
+              className="absolute bottom-10 right-20 text-5xl text-[hsl(var(--cherry-pink))]/50 font-yokomoji"
               animate={{
                 y: [0, 20, 0],
-                opacity: [0.2, 0.5, 0.2],
+                opacity: [0.2, 0, 0.2],
               }}
               transition={{
                 duration: 4,
