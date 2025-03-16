@@ -8,15 +8,19 @@ export default function CombinedSectionBreak({ className = "" }) {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  const CLOUD_FRONT_URL = process.env.NEXT_PUBLIC_CLOUDFRONT_URL;
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const getSectionBreakSrc = () => {
-    if (!mounted) return "/section.svg";
+    if (!mounted) return `${CLOUD_FRONT_URL}/ui/section.svg`;
 
     const isDarkTheme = theme === "dark" || resolvedTheme === "dark";
-    return isDarkTheme ? "/section-dark.svg" : "/section.svg";
+    return isDarkTheme
+      ? `${CLOUD_FRONT_URL}/ui/section-dark.svg`
+      : `${CLOUD_FRONT_URL}/ui/section.svg`;
   };
 
   return (
@@ -33,7 +37,7 @@ export default function CombinedSectionBreak({ className = "" }) {
       {/* Torii gate positioned on top of the section break */}
       <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-[70%] ">
         <Image
-          src="/jpblog.svg"
+          src={`${CLOUD_FRONT_URL}/ui/jpblog.svg`}
           alt="Japanese Torii Gate"
           width={200}
           height={200}

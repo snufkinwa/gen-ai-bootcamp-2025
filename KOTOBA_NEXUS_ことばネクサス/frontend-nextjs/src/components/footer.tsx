@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="relative border-t">
       {/* Theme-aware background - dark in light mode, light in dark mode */}
-      <div className="absolute inset-0 bg-[url('/dark-cta.png')] dark:bg-[url('/cta.png')] opacity-25 dark:opacity-30 bg-fill bg-center" />
+      <div className="absolute inset-0 bg-[url('/ui/dark-cta.png')] dark:bg-[url('/ui/cta.png')] opacity-25 dark:opacity-30 bg-fill bg-center" />
 
       {/* Content remains at 100% opacity */}
       <div className="relative z-10 container mx-auto px-4 py-12">
@@ -130,7 +130,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border/50 mt-8 pt-8 text-center text-foreground/70">
+        <div className=" border-border/50 mt-8 pt-8 text-center text-foreground/70">
           <p>
             &copy; {new Date().getFullYear()} KOTOBA NEXUS. All rights reserved.
           </p>

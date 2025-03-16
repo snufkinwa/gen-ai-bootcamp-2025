@@ -4,7 +4,8 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
+const CLOUD_FRONT_URL = process.env.NEXT_PUBLIC_CLOUDFRONT_URL;
 
 const characters = [
   {
@@ -12,7 +13,7 @@ const characters = [
     name: "高橋大和 (Takahashi Yamato)",
     title: "Writing Instructor",
     rating: 5,
-    image: "/1.png",
+    image: `${CLOUD_FRONT_URL}/character/1.png`,
     description:
       "Expert in kana, hiragana and kanji. Dedicated to teaching precise writing techniques and stroke order for beautiful Japanese script.",
     color: "primary",
@@ -22,7 +23,7 @@ const characters = [
     name: "ピイ (Pii)",
     title: "Speed Learning Coach",
     rating: 5,
-    image: "/2.png",
+    image: `${CLOUD_FRONT_URL}/character/2.png`,
     description:
       "A cheerful language instructor specializing in everyday conversation. She'll help you speak Japanese naturally in daily situations.",
     color: "cherry-pink",
@@ -32,7 +33,7 @@ const characters = [
     name: "黒 (Kuro)",
     title: "Slang Specialist",
     rating: 4,
-    image: "/3-color.png",
+    image: `${CLOUD_FRONT_URL}/character/3-color.png`,
     description:
       "Cool and casual, Kuro knows all the latest Japanese slang and youth expressions to keep your Japanese current.",
     color: "cherry-sky",
@@ -42,7 +43,7 @@ const characters = [
     name: "緑 真律 (Midori Maritsu)",
     title: "Formal Language Expert",
     rating: 5,
-    image: "/5-color.png",
+    image: `${CLOUD_FRONT_URL}/character/5-color.png`,
     description:
       "Elegant and proper, Midori teaches formal Japanese for business settings and traditional contexts.",
     color: "cherry-blush",
@@ -64,7 +65,7 @@ export default function CharacterSection() {
       {/* Background decoration with vertical extension only */}
       <div className="absolute inset-0 -top-16  -bottom-16 right-0 left-0 z-0 opacity-20 pointer-events-none">
         <Image
-          src="/herosakura.png"
+          src={`${CLOUD_FRONT_URL}/ui/herosakura.png`}
           alt="Cherry blossom background"
           fill
           className="object-cover"

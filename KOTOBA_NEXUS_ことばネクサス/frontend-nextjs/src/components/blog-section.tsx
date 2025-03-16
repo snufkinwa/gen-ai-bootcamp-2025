@@ -15,6 +15,8 @@ import Link from "next/link";
 import Image from "next/image";
 import CombinedSectionBreak from "@/components/section-break";
 
+const CLOUD_FRONT_URL = process.env.NEXT_PUBLIC_CLOUDFRONT_URL;
+
 const blogPosts = [
   {
     id: 1,
@@ -24,7 +26,7 @@ const blogPosts = [
     date: "March 10, 2025",
     author: "Tanaka Yuki",
     category: "Grammar Tips",
-    imageUrl: "/blog1.png?height=200&width=400",
+    imageUrl: `${CLOUD_FRONT_URL}/ui/blog1.png?height=200&width=400`,
   },
   {
     id: 2,
@@ -34,7 +36,7 @@ const blogPosts = [
     date: "March 5, 2025",
     author: "Suzuki Akira",
     category: "JLPT",
-    imageUrl: "/blog2.png?height=200&width=400",
+    imageUrl: `${CLOUD_FRONT_URL}/ui/blog2.png?height=200&width=400`,
   },
   {
     id: 3,
@@ -44,7 +46,7 @@ const blogPosts = [
     date: "February 28, 2025",
     author: "Watanabe Mei",
     category: "Culture",
-    imageUrl: "/blog3.png?height=200&width=400",
+    imageUrl: `${CLOUD_FRONT_URL}/ui/blog3.png?height=200&width=400`,
   },
 ];
 

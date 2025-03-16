@@ -3,142 +3,179 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  User,
+  Pen,
+  Mic,
+  Book,
+  LogIn,
+  ChevronRight,
+  ChevronLeft,
+  Home,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { useAuth } from "@/lib/auth-context";
-import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/components/ui/use-mobile";
 
-const navItems = [
-  { name: "Dashboard", path: "/dashboard" },
-  { name: "Kana Game", path: "/kana-game" },
-  { name: "Pronunciation", path: "/pronunciation" },
-  { name: "Visual Novel", path: "/visual-novel" },
-];
-
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Sidebar() {
+  const [isExpanded, setIsExpanded] = useState(true);
   const pathname = usePathname();
-
+  const isMobile = useIsMobile();
   const { isAuthenticated, user, logout } = useAuth();
+
   const handleLogout = () => {
     logout();
   };
 
+  // Always collapse sidebar on mobile when not explicitly opened
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const isOpen = isMobile ? mobileOpen : isExpanded;
+
+  // Define nav items based on authentication status
+  const navItems = [
+    ...(isAuthenticated ? [] : [{ name: "Home", path: "/", icon: Home }]),
+    ...(isAuthenticated
+      ? [{ name: "Dashboard", path: "/dashboard", icon: User }]
+      : []),
+    { name: "Kana Game", path: "/kana-game", icon: Pen },
+    { name: "Pronunciation", path: "/pronunciation", icon: Mic },
+    { name: "Visual Novel", path: "/visual-novel", icon: Book },
+  ];
+
   return (
-    <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm border-b">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex justify-between items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image
-              src="/logonav.svg"
-              alt="KOTOBA NEXUS Logo"
-              width={100}
-              height={100}
-            />
-          </Link>
+    <>
+      {/* Mobile overlay when sidebar is open */}
+      {isMobile && mobileOpen && (
+        <div
+          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === item.path
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <ModeToggle />
-            {isAuthenticated ? (
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground hidden md:inline-block">
-                  Welcome, {user.name}
-                </span>
-                <Button size="sm" variant="outline" onClick={handleLogout}>
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Button size="sm" variant="outline" asChild>
-                  <Link href="/login">Login</Link>
-                </Button>
-              </div>
-            )}
-          </div>
+      {/* Mobile toggle button */}
+      {isMobile && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="fixed top-4 left-4 z-50"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle Menu"
+        >
+          {mobileOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
+        </Button>
+      )}
 
-          {/* Mobile Navigation Toggle */}
-          <div className="flex items-center space-x-4 md:hidden">
+      {/* Sidebar */}
+      <div
+        className={cn(
+          "fixed h-full z-50 flex flex-col border-r bg-background transition-all duration-300",
+          isOpen ? "w-64" : "w-16",
+          isMobile && !mobileOpen && "translate-x-[-100%]",
+          "before:absolute before:inset-0 before:bg-[url('/ui/dark-cta.png')] dark:before:bg-[url('/ui/cta.png')] before:bg-fill before:bg-center before:bg-repeat before:opacity-30 before:pointer-events-none"
+        )}
+      >
+        {/* Theme toggle at the top instead of title */}
+        <div className="flex justify-center items-center p-4 h-16 border-b">
+          {isOpen ? (
+            <div className="flex items-center justify-between w-full">
+              <span className="text-xl font-yokomoji">ことば❀ネクサス</span>
+              <ModeToggle />
+            </div>
+          ) : (
             <ModeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle Menu"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
-          </div>
+          )}
         </div>
 
-        {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <div className="md:hidden pt-4 pb-3 space-y-3">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`block px-2 py-1 text-sm font-medium rounded-md transition-colors hover:bg-accent ${
-                  pathname === item.path
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <div className="pt-2 space-y-2">
-              {isAuthenticated ? (
-                <Button
-                  className="w-full"
-                  size="sm"
-                  variant="outline"
-                  onClick={() => {
-                    handleLogout();
-                    setIsOpen(false);
-                  }}
-                >
-                  Logout
-                </Button>
-              ) : (
-                <>
-                  <Button
-                    className="w-full"
-                    size="sm"
-                    variant="outline"
-                    asChild
-                  >
-                    <Link href="/login">Login</Link>
-                  </Button>
-                  <Button className="w-full" size="sm" asChild>
-                    <Link href="/signup">Sign Up</Link>
-                  </Button>
-                </>
-              )}
-            </div>
-          </div>
+        {/* Collapsible toggle */}
+        {!isMobile && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="absolute right-[-12px] top-5 h-6 w-6 rounded-full border shadow-sm bg-background z-10"
+            aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
+          >
+            {isExpanded ? (
+              <ChevronLeft className="h-4 w-4" />
+            ) : (
+              <ChevronRight className="h-4 w-4" />
+            )}
+          </Button>
         )}
+
+        {/* Nav items */}
+        <div className="flex-1 overflow-y-auto py-6 px-3">
+          <nav className="flex flex-col space-y-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={cn(
+                    "flex items-center rounded-md px-3 py-2 text-sm transition-colors",
+                    pathname === item.path
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "text-muted-foreground hover:bg-muted",
+                    !isOpen && "justify-center"
+                  )}
+                  onClick={() => isMobile && setMobileOpen(false)}
+                >
+                  <Icon className={cn("h-5 w-5", isOpen && "mr-3")} />
+                  {isOpen && <span>{item.name}</span>}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Footer */}
+        <div className="p-3 border-t">
+          {isAuthenticated ? (
+            <div className="flex flex-col space-y-2">
+              {isOpen && (
+                <div className="px-3 py-2 text-sm text-muted-foreground">
+                  Signed in as <span className="font-medium">{user?.name}</span>
+                </div>
+              )}
+              <Button
+                variant="outline"
+                onClick={handleLogout}
+                size="sm"
+                className={!isOpen ? "p-2" : ""}
+              >
+                {isOpen ? "Logout" : <LogIn className="h-4 w-4 rotate-180" />}
+              </Button>
+            </div>
+          ) : (
+            <Button asChild size="sm" className="w-full">
+              <Link href="/login">
+                {isOpen ? "Login" : <LogIn className="h-4 w-4" />}
+              </Link>
+            </Button>
+          )}
+        </div>
       </div>
-    </nav>
+
+      {/* Page content wrapper - adds margin to accommodate sidebar */}
+      <div
+        className={cn(
+          "min-h-screen transition-all duration-300",
+          !isMobile && (isExpanded ? "ml-64" : "ml-16")
+        )}
+      >
+        <main className="flex-grow">
+          {/* Pass children/page content here */}
+        </main>
+      </div>
+    </>
   );
 }

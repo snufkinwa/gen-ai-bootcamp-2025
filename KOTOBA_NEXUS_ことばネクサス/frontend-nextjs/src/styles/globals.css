@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Lazy Dog";
-  src: url("/lazy_dog.ttf") format("truetype");
+  src: url("/font/lazy_dog.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: "Yokomoji";
-  src: url("/yokomoji.otf") format("opentype");
+  src: url("/font/yokomoji.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function LandingNav() {
+  const CLOUD_FRONT_URL = process.env.NEXT_PUBLIC_CLOUDFRONT_URL;
   return (
     <nav className="absolute top-0 left-0 right-0 z-50 w-full">
       <div className="container mx-auto px-4 py-0">
@@ -16,7 +17,7 @@ export default function LandingNav() {
           <div className="flex justify-center">
             <Link href="/" className="flex items-center">
               <Image
-                src="/logo.svg"
+                src={`${CLOUD_FRONT_URL}/logo.svg`}
                 alt="KOTOBA NEXUS Logo"
                 width={350}
                 height={350}
