@@ -80,7 +80,7 @@ const CharacterPopup = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 50, scale: 0.9 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="fixed bottom-0 right-0 z-50 flex items-end space-x-4"
+        className="fixed bottom-0 right-0 z-50 flex items-end space-x-2"
       >
         {/* Speech Bubble */}
         <motion.div
@@ -91,7 +91,7 @@ const CharacterPopup = () => {
             y: dismissing ? 20 : 0,
           }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="relative bottom-10 bg-white dark:bg-gray-800 text-black dark:text-white text-sm px-6 py-3 rounded-lg shadow-lg max-w-xs"
+          className="relative bottom-40 bg-white dark:bg-gray-800 text-black dark:text-white text-sm px-6 py-3 rounded-lg shadow-lg max-w-xs"
         >
           <Button
             size="icon"

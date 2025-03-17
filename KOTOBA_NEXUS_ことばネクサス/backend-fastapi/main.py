@@ -216,19 +216,33 @@ def full_reset():
 
 # 6) REVIEW ENDPOINT
 
-@app.post("/api/study_sessions/{id}/words/{word_id}/review")
-def review_word(
-    id: int = Path(..., description="Study Session ID"),
-    word_id: int = Path(..., description="Word ID"),
-    correct: bool = Body(..., description="Whether the answer was correct")
+@router.post("/api/study_sessions/{session_id}/words/{word_id}/review")
+def log_kana_review(
+    session_id: int,
+    word_id: int,
+    user_id: str = Body(...),
+    correct: bool = Body(...),
+    mistakes: List[str] = Body([]),
+    ai_feedback: str = Body("")
 ):
-    return {
-        "success": True,
+    """Logs AI feedback on Kana writing."""
+    
+    now = datetime.utcnow().isoformat()
+    
+    review_entry = {
+        "user_id": user_id,
+        "session_id": session_id,
         "word_id": word_id,
-        "study_session_id": id,
         "correct": correct,
-        "created_at": "2025-02-08T17:33:07-05:00"
+        "mistakes": mistakes,
+        "ai_feedback": ai_feedback,
+        "timestamp": now
     }
+
+    # Store in DynamoDB
+    dynamodb.Table("KOTOBA_NEXUS_UserProgress").put_item(Item=review_entry)
+
+    return {"message": "Review logged", "data": review_entry}
 
 if __name__ == "__main__":
     import uvicorn

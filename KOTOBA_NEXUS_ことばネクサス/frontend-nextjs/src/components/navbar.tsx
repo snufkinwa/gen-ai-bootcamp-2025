@@ -142,7 +142,7 @@ export default function Sidebar() {
           {isAuthenticated ? (
             <div className="flex flex-col space-y-2">
               {isOpen && (
-                <div className="px-3 py-2 text-sm text-muted-foreground">
+                <div className="px-3 py-2 text-sm z-60">
                   Signed in as <span className="font-medium">{user?.name}</span>
                 </div>
               )}
