@@ -40,3 +40,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+*/KOTOBA_NEXUS_ことばネクサス/backend-fastapi/__pycache__
