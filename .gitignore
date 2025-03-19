@@ -41,4 +41,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-*/KOTOBA_NEXUS_ことばネクサス/backend-fastapi/__pycache__
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*/__pycache__/*
+/KOTOBA_NEXUS_ことばネクサス/backend-fastapi/__pycache__/
