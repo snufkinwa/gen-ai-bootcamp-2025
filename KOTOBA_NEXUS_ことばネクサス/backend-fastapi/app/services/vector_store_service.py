@@ -1,77 +1,65 @@
-import boto3
+import pinecone
 import json
 import numpy as np
 from typing import List, Dict
-from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
 import os
+from anthropic import Anthropic
 
 class VectorStoreService:
-    """Vector store using Amazon Bedrock embeddings and OpenSearch Serverless"""
+    """Vector store using Pinecone and Claude for embeddings"""
 
-    def __init__(self, vector_dim=1536, collection_name="search-kotoba"):
+    def __init__(self, index_name="kotoba-nexus", vector_dim=1536):
+        self.index_name = index_name
         self.vector_dim = vector_dim
-        self.collection_name = collection_name
-
-        # AWS Clients
-        self.bedrock = boto3.client(service_name="bedrock-runtime", region_name="us-east-1")
-        self.opensearch_host = os.getenv("OPENSEARCH_ENDPOINT", "https://your-opensearch-endpoint")
         
-        credentials = boto3.Session().get_credentials()
-        auth = AWSV4SignerAuth(credentials, "us-east-1", "aoss")
+        # Pinecone API key & setup
+        pinecone.init(api_key=os.getenv("PINECONE_API_KEY"), environment="us-west1-gcp")
+        
+        # Check if index exists, else create
+        if self.index_name not in pinecone.list_indexes():
+            pinecone.create_index(self.index_name, dimension=self.vector_dim, metric="cosine")
+        
+        self.index = pinecone.Index(self.index_name)
 
-        self.opensearch = OpenSearch(
-            hosts=[{"host": self.opensearch_host, "port": 443}],
-            http_auth=auth,
-            use_ssl=True,
-            verify_certs=True,
-            connection_class=RequestsHttpConnection,
-        )
+        # Claude API setup (Anthropic)
+        self.claude = Anthropic(api_key=os.getenv("CLAUDE_API_KEY"))
 
     def embed_text(self, text: str) -> np.array:
-        """Use Amazon Bedrock Titan model to generate embeddings"""
-        payload = {"inputText": text}
-        response = self.bedrock.invoke_model(
-            modelId="amazon.titan-embed-text-v1",
-            body=json.dumps(payload)
+        """Use Claude to generate embeddings"""
+        # Use the embeddings API, not completions
+        response = self.claude.embeddings.create(
+            model="claude-3-opus-20240229",
+            input=text
         )
-        embedding = json.loads(response["body"].read())["embedding"]
+        # Extract the embedding from the response
+        embedding = response.embedding
         return np.array(embedding, dtype=np.float32)
 
     def add_transcriptions(self, transcriptions: List[str]):
-        """Convert transcriptions to embeddings and store in OpenSearch"""
-        for text in transcriptions:
+        """Convert transcriptions to embeddings and store in Pinecone"""
+        vectors = []
+        for i, text in enumerate(transcriptions):
             embedding = self.embed_text(text).tolist()
-
-            doc = {
-                "text": text,
-                "embedding": embedding
-            }
-
-            self.opensearch.index(index=self.collection_name, body=doc)
-
-    def search_similar(self, query: str, top_k: int = 5) -> List[Dict[str, any]]:
-        """Find top-k similar embeddings in OpenSearch"""
-        query_embedding = self.embed_text(query).tolist()
-
-        search_query = {
-            "size": top_k,
-            "query": {
-                "knn": {
-                    "embedding": {
-                        "vector": query_embedding,
-                        "k": top_k
-                    }
-                }
-            }
-        }
-
-        response = self.opensearch.search(index=self.collection_name, body=search_query)
-        
-        results = []
-        for hit in response["hits"]["hits"]:
-            results.append({
-                "text": hit["_source"]["text"],
-                "score": hit["_score"]
+            # Include the text as metadata for retrieval later
+            vectors.append({
+                "id": str(i),
+                "values": embedding,
+                "metadata": {"text": text}
             })
         
-        return results
+        # Updated upsert to handle the correct format
+        self.index.upsert(vectors=vectors)
+
+    def search_similar(self, query: str, top_k: int = 5) -> List[Dict[str, any]]:
+        """Find top-k similar embeddings in Pinecone"""
+        query_embedding = self.embed_text(query).tolist()
+        results = self.index.query(
+            vector=query_embedding,
+            top_k=top_k,
+            include_metadata=True
+        )
+
+        return [
+            {"text": match["metadata"]["text"], "score": match["score"]}
+            for match in results["matches"]
+        ]

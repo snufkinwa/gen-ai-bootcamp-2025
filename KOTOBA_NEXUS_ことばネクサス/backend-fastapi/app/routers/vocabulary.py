@@ -1,4 +1,3 @@
-# app/routers/vocabulary.py
 from fastapi import APIRouter, HTTPException, Query, Path
 from typing import Dict, List, Any, Optional
 

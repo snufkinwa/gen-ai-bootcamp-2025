@@ -2,11 +2,11 @@
 
 ## KOTOBA NEXUS
 
-![alt text](landingpagelight.png "Landing Page")
-![alt text](landingpagedark.png "Landing Page Dark")
-![alt text](loginscreenshot.png "Login")
-![alt text](signupscreenshot.png "Sign Up")
-![alt text](dashboard.png "Dashboard")
-![alt text](PronunciationGame.png "Pronunciation Game")
-![alt text](KanaWritingGame.png "Kana Writing Game")
-![alt text](VisualNovel.png "Visual Novel")
+![alt text](/screenshots/landingpagelight.png "Landing Page")
+![alt text](/screenshots/landingpagedark.png "Landing Page Dark")
+![alt text](/screenshots/loginscreenshot.png "Login")
+![alt text](/screenshots/signupscreenshot.png "Sign Up")
+![alt text](/screenshots/dashboard.png "Dashboard")
+![alt text](/screenshots/PronunciationGame.png "Pronunciation Game")
+![alt text](/screenshots/KanaWritingGame.png "Kana Writing Game")
+![alt text](/screenshots/VisualNovel.png "Visual Novel")

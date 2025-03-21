@@ -9,8 +9,8 @@ dynamodb = boto3.resource("dynamodb", region_name=os.getenv("AWS_REGION", "us-ea
 
 # Table references
 USER_PROGRESS_TABLE = os.getenv("DYNAMODB_USER_PROGRESS_TABLE", "KOTOBA_NEXUS_UserProgress")
-STUDY_SESSIONS_TABLE = os.getenv("DYNAMODB_STUDY_SESSIONS_TABLE", "StudySessions")
-REVIEW_LOGS_TABLE = os.getenv("DYNAMODB_REVIEW_LOGS_TABLE", "ReviewLogs")
+STUDY_SESSIONS_TABLE = os.getenv("DYNAMODB_STUDY_SESSIONS_TABLE", "KOTOBA_NEXUS_StudySessions")
+REVIEW_LOGS_TABLE = os.getenv("DYNAMODB_REVIEW_LOGS_TABLE", "KOTOBA_NEXUS_ReviewLogs")
 
 user_progress_table = dynamodb.Table(USER_PROGRESS_TABLE)
 study_sessions_table = dynamodb.Table(STUDY_SESSIONS_TABLE)
